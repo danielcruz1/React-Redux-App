@@ -1,38 +1,43 @@
 import {
-    POKEMONDATA_START,
-    POKEMONDATA_SUCCESS,
-    POKEMONDATA_FAILURE
+    FETCH_POKEMON_START,
+    FETCH_POKEMON_SUCCESS,
+    FETCH_POKEMON_FAILURE
   } from "../actions";
   
   const initialState = {
-    isLoading: false,
+    pokemon: [],
     error: "",
-    pokemon: { name: "Sebastianzard", new: "" }
+    isFetching: false
   };
   
-  const reducer = (state = initialState, action) => {
+  function reducer(state = initialState, action) {
+    console.log("reducer", action);
     switch (action.type) {
-      case POKEMONDATA_START:
+      case FETCH_POKEMON_START:
         return {
           ...state,
-          isLoading: true
+          error: "",
+          isFetching: true
         };
-      case POKEMONDATA_SUCCESS:
+  
+      case FETCH_POKEMON_SUCCESS:
         return {
           ...state,
-          pokemon: { ...state.pokemon, new: action.payload },
-          isLoading: false
+          error: "",
+          isFetching: false,
+          pokemon: action.payload
         };
-      case POKEMONDATA_FAILURE:
+  
+      case FETCH_POKEMON_FAILURE:
         return {
           ...state,
           error: action.payload,
-          isLoading: false
+          isFetching: false
         };
       default:
         return state;
     }
-  };
+  }
   
   export default reducer;
   
