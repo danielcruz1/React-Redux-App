@@ -8,9 +8,7 @@ export const getPokemonData = () => dispatch => {
   dispatch({ type: POKEMONDATA_START });
 
   axios
-
     .get("https://pokeapi.co/api/v2/pokemon")
-
     .then(res => {
       console.log(res);
       dispatch({
@@ -18,7 +16,6 @@ export const getPokemonData = () => dispatch => {
         payload: res.data.value
       });
     })
-
     .catch(err => {
       console.log(err);
       dispatch({
